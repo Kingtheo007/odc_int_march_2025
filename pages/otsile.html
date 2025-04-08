@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pula Beats | Botswana's Premier Music Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/otsile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4E1A3D;
+            --secondary-color: #25A18E;
+            --accent-color: #F7C548;
+            --dark-bg: #121212;
+            --dark-bg-alt: #1E1E1E;
+            --light-text: #F5F5F5;
+            --medium-text: #B3B3B3;
+            --highlight: #00C6FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        /* Navbar Adjustments */
+        .navbar {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--light-text);
+        }
+
+        .navbar-brand span {
+            color: var(--secondary-color);
+        }
+
+        .nav-link {
+            color: var(--light-text) !important;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 50%;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        /* Navbar Form Styles */
+        .user-controls.form {
+            margin-left: 1rem;
+        }
+
+        .search-btn {
+            color: var(--light-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-btn:hover {
+            color: var(--secondary-color);
+        }
+
+        .search-field {
+            width: 0;
+            opacity: 0;
+            background-color: var(--dark-bg-alt);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-field.expanded {
+            width: 200px;
+            opacity: 1;
+        }
+
+        .search-field:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(37, 161, 142, 0.5);
+            outline: none;
+        }
+
+        .search-field::placeholder {
+            color: var(--medium-text);
+        }
+
+        .login-btn {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* General Styles */
+        a {
+            text-decoration: none;
+            color: var(--light-text);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        button {
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 0 5%;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--light-text);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .section-header h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .view-all {
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-all:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.pinimg.com/736x/1d/1f/4e/1d1f4e835ae786bce2815c98f169d1c6.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--light-text);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--medium-text);
+        }
+
+        .cta-btn {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 161, 142, 0.3);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(247, 197, 72, 0.4);
+        }
+
+        /* Featured Artists Section */
+        .featured {
+            padding: 5rem 5%;
+        }
+
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .artist-card {
+            background-color: var(--dark-bg-alt);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .artist-img {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+        }
+
+        .artist-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .artist-card:hover .artist-img img {
+            transform: scale(1.1);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(78, 26, 61, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .play-overlay i {
+            font-size: 3rem;
+            color: var(--light-text);
+            background-color: rgba(37, 161, 142, 0.8);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .artist-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .artist-card:hover .play-overlay i {
+            transform: translateY(0);
+        }
+
+        .artist-card h3 {
+            padding: 1rem 1rem 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .artist-card p {
+            padding: 0 1rem 1rem;
+            color: var(--medium-text);
+            font-size: 0.9rem;
+        }
+
+        /* Trending Section with Music Player */
+        .trending {
+            padding: 3rem 5% 5rem;
+            background-color: var(--dark-bg-alt);
+        }
+
+        .music-player {
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .now-playing {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-bg-alt));
+        }
+
+        .song-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .song-info img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-right: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .song-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .song-info p {
+            color: var(--medium-text);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .controls button {
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.2rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .controls button:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .play-btn {
+            background-color: var(--secondary-color) !important;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(37, 161, 142, 0.3);
+        }
+
+        .play-btn:hover {
+            background-color: var(--accent-color) !important;
+            color: var(--dark-bg) !important;
+        }
+
+        .progress-container {
+            width: 100%;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 50%;
+            height: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--medium-text);
+        }
+
+        .playlist {
+            background-color: var(--dark-bg);
+        }
+
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .playlist-item:hover {
+            background-color: rgba(78, 26, 61, 0.2);
+        }
+
+        .playlist-item.active {
+            background-color: rgba(37, 161, 142, 0.2);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .track-number {
+            width: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--medium-text);
+        }
+
+        .track-info {
+            flex: 1;
+            margin-left: 1rem;
+        }
+
+        .track-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .track-info p {
+            font-size: 0.8rem;
+            color: var(--medium-text);
+        }
+
+        .track-duration {
+            font-size: 0.9rem;
+            color: var(--medium-text);
+        }
+
+        /* Genres Section */
+        .genres {
+            padding: 5rem 5%;
+        }
+
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .genre-card {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .genre-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .genre-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 4px solid var(--dark-bg-alt);
+            transition: all 0.3s ease;
+        }
+
+        .genre-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .genre-card:hover .genre-img {
+            border-color: var(--secondary-color);
+        }
+
+        .genre-card:hover .genre-img img {
+            transform: scale(1.1);
+        }
+
+        .genre-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Upcoming Events Section */
+        .upcoming-events {
+            padding: 3rem 5% 5rem;
+            background-color: var(--dark-bg-alt);
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-date {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            border-radius: 10px;
+            padding: 0.8rem;
+            text-align: center;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .event-date .day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .event-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .location,
+        .artists {
+            font-size: 0.9rem;
+            color: var(--medium-text);
+            margin-bottom: 0.3rem;
+        }
+
+        .location i {
+            color: var(--secondary-color);
+            margin-right: 0.3rem;
+        }
+
+        .ticket-btn {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+            align-self: center;
+        }
+
+        .ticket-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-bg-alt);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            margin-bottom: 2rem;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+
+        .footer-logo p {
+            color: var(--medium-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 2;
+            justify-content: space-around;
+        }
+
+        .footer-column {
+            margin-bottom: 2rem;
+            min-width: 160px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary-color);
+            padding-left: 0.5rem;
+        }
+
+        /* Subscription Form Styles */
+        .subscribe-section {
+            margin-bottom: 2rem;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .subscribe-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .subscribe-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .subscribe-section p {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .subscribe-section .input-group {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .subscribe-section .form-control {
+            background-color: var(--dark-bg-alt);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            border-radius: 50px 0 0 50px;
+            padding: 0.5rem 1rem;
+        }
+
+        .subscribe-section .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(37, 161, 142, 0.5);
+            outline: none;
+        }
+
+        .subscribe-section .form-control::placeholder {
+            color: var(--medium-text);
+        }
+
+        .subscribe-section .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 0 50px 50px 0;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-section .btn-primary:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom p {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .events-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .artist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .genre-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                margin-top: 2rem;
+            }
+
+            .navbar-collapse {
+                background-color: var(--dark-bg-alt);
+                padding: 1rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0 !important;
+            }
+
+            .user-controls.form {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .artist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .artist-card h3 {
+                font-size: 1rem;
+            }
+
+            .genre-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .event-card {
+                padding: 1rem;
+                flex-direction: column;
+            }
+
+            .event-date {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                width: 60px;
+                height: 60px;
+            }
+
+            .ticket-btn {
+                margin-left: 0;
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content,
+        .artist-card,
+        .genre-card,
+        .event-card {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .artist-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .artist-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .artist-card:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .genre-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .genre-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .genre-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .genre-card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .genre-card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container-fluid px-5">
+                <a class="navbar-brand" href="#">
+                    <h1>Pula<span>Beats</span></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto me-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Discover</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Artists</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex align-items-center user-controls">
+                        <button class="search-btn btn btn-link text-light me-2" type="submit"><i
+                                class="fas fa-search"></i></button>
+                        <button class="login-btn btn btn-primary" type="button">Login</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover Botswana's Diverse Music Scene</h1>
+                <p>Stream and download the best traditional and contemporary music from Botswana's top artists</p>
+                <button class="cta-btn">Start Listening</button>
+            </div>
+        </section>
+
+        <section class="featured">
+            <div class="section-header">
+                <h2>Featured Artists</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="artist-grid">
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu4JI2Pom3zFlDtYzy6RT0wpIEv3gJnkFGpD4c7BFa7PlcihZqvsIC7G2xuL_wFNppK7w&usqp=CAU"
+                            alt="Artist 1">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h3>Mpho Sebina</h3>
+                    <p>Neo-Soul, Afro-Jazz</p>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA_T-GvbuvEB0nguoHqHQQU6UIEb_C_kJpDA&s"
+                            alt="Artist 2">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h3>ATI</h3>
+                    <p>Hip-Hop, Motswako</p>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://guardiansun.co.bw/uploads/imported_images/themidweeksun/wp-content/uploads/2018/11/Charma-gal.jpg"
+                            alt="Artist 3">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h3>Charma Gal</h3>
+                    <p>Rhumba, Kwasa-Kwasa</p>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://www.musicinafrica.net/sites/default/files/styles/profile_images_large/public/images/artist_profile/201904/dsc1623s.jpg?itok=vBPCptFo"
+                            alt="Artist 4">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h3>Han-C</h3>
+                    <p>Afropop, RnB</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="trending">
+            <div class="section-header">
+                <h2>Trending Now</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="music-player">
+                <div class="now-playing">
+                    <div class="song-info">
+                        <img src="https://cdn-images.dzcdn.net/images/cover/00155c32bca33d8143154e478fe18390/0x1900-000000-80-0-0.jpg"
+                            alt="Album Cover">
+                        <div>
+                            <h3>Vuma Dlozi lami</h3>
+                            <p>Issa Sisdoh ft. Ancestral Rituals</p>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button><i class="fas fa-step-backward"></i></button>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <button><i class="fas fa-step-forward"></i></button>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="time">
+                            <span>1:45</span>
+                            <span>3:30</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="playlist">
+                    <div class="playlist-item active">
+                        <div class="track-number">1</div>
+                        <div class="track-info">
+                            <h4>Vuma Dlozi Lami</h4>
+                            <p>Issa Sisdoh ft. Ancestral Rituals</p>
+                        </div>
+                        <div class="track-duration">6:21</div>
+                    </div>
+                    <div class="playlist-item">
+                        <div class="track-number">2</div>
+                        <div class="track-info">
+                            <h4>Chobolo</h4>
+                            <p>Baxon ft. Juu Matere</p>
+                        </div>
+                        <div class="track-duration">3:54</div>
+                    </div>
+                    <div class="playlist-item">
+                        <div class="track-number">3</div>
+                        <div class="track-info">
+                            <h4>Isaku</h4>
+                            <p>Dj Latimmy</p>
+                        </div>
+                        <div class="track-duration">3:53</div>
+                    </div>
+                    <div class="playlist-item">
+                        <div class="track-number">4</div>
+                        <div class="track-info">
+                            <h4>Tsena Rasta</h4>
+                            <p>Monnamogolo wa Thulaganyo</p>
+                        </div>
+                        <div class="track-duration">5:25</div>
+                    </div>
+                    <div class="playlist-item">
+                        <div class="track-number">5</div>
+                        <div class="track-info">
+                            <h4>Phika</h4>
+                            <p>Chokoma</p>
+                        </div>
+                        <div class="track-duration">4:02</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="genres">
+            <div class="section-header">
+                <h2>Explore Genres</h2>
+            </div>
+            <div class="genre-grid">
+                <div class="genre-card">
+                    <div class="genre-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNBAEOso2RvXiiyukeBDfU1BpLRlYK_t4ERQ&s"
+                            alt="Traditional">
+                    </div>
+                    <h3>Traditional</h3>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxHVqYEZ9zgmEwBuSjefUr5YfyUJYRNjpGaQ&s"
+                            alt="Afropop">
+                    </div>
+                    <h3>Afropop</h3>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGtD05W88Cxiu-5BUx6hu6Hijg-ErfIv7g6g&s"
+                            alt="Kwaito">
+                    </div>
+                    <h3>Kwaito</h3>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBTR-R-gaQkaPTjf1OrefcWcDTxW6jxGkt5Q&s"
+                            alt="Hip-Hop">
+                    </div>
+                    <h3>Hip-Hop</h3>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-img">
+                        <img src="https://dailynews.gov.bw/common_up/dailynews/04-09-2022_04-09-2022_maitiso-a-moopelo-wa-diatla-a-ngoka-matshwititshwiti-_1662290745_image_main_68948.jpg_image_main.jpg"
+                            alt="Gospel">
+                    </div>
+                    <h3>Gospel</h3>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-img">
+                        <img src="https://www.musicinafrica.net/sites/default/files/styles/article_slider_large/public/images/article/201808/bots1.png?itok=ICk07LgY"
+                            alt="Jazz">
+                    </div>
+                    <h3>Jazz</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="upcoming-events">
+        <div class="section-header">
+            <h2>Upcoming Events</h2>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="events-container">
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">31</span>
+                    <span class="month">Aug</span>
+                </div>
+                <div class="event-details">
+                    <h3>Gaborone International Music Festival</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> National Stadium, Gaborone</p>
+                    <p class="artists">Featuring: ATI, Mpho Sebina, Charma Gal, & more</p>
+                </div>
+                <button class="ticket-btn">Get Tickets</button>
+            </div>
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">22</span>
+                    <span class="month">Dec</span>
+                </div>
+                <div class="event-details">
+                    <h3>Born & Raised</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> Serowe Sports Complex</p>
+                    <p class="artists">Featuring: Han-C, Culture Spears, Vee Mampeezy</p>
+                </div>
+                <button class="ticket-btn">Get Tickets</button>
+            </div>
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">28</span>
+                    <span class="month">Dec</span>
+                </div>
+                <div class="event-details">
+                    <h3>Local Ka Monate</h3>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> Maun Sports Complex</p>
+                    <p class="artists">Featuring: Franco, Sereetsi & The Natives, Dr Vom</p>
+                </div>
+                <button class="ticket-btn">Get Tickets</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>Pula<span>Beats</span></h2>
+                <p>Botswana's Premier Music Platform</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">For Artists</a></li>
+                        <li><a href="#">Developers</a></li>
+                        <li><a href="#">Advertising</a></li>
+                        <li><a href="#">Investors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Copyright</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="subscribe-section">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Stay updated with the latest music releases, events, and news from PulaBeats.</p>
+                    <form action="#" method="post" class="input-group mb-3 justify-content-center">
+                        <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email"
+                            required style="max-width: 300px;">
+                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 PulaBeats. All rights reserved.</p>
+            <p>Celebrating Botswana's musical heritage and future.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/otsile.js"></script>
+    <script>
+        // Wait for DOM to fully load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Bootstrap Navbar Enhancements
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('#navbarNav');
+
+            navbarToggler.addEventListener('click', function () {
+                if (!navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.style.opacity = '0';
+                    setTimeout(() => {
+                        navbarCollapse.style.opacity = '1';
+                        navbarCollapse.style.transition = 'opacity 0.3s ease';
+                    }, 10);
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        const targetSection = document.querySelector(href);
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth' });
+                            // Update active state
+                            document.querySelectorAll('.nav-link').forEach(navLink => navLink.classList.remove('active'));
+                            this.classList.add('active');
+                            // Close navbar on mobile
+                            if (navbarCollapse.classList.contains('show')) {
+                                bootstrap.Collapse.getInstance(navbarCollapse).hide();
+                            }
+                        }
+                    }
+                });
+            });
+            // Search Button Functionality
+            const searchBtn = document.querySelector('.search-btn');
+            let searchOpen = false;
+            let searchField;
+
+            searchBtn.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent form submission
+                if (!searchOpen) {
+                    searchField = document.createElement('input');
+                    searchField.type = 'text';
+                    searchField.className = 'search-field form-control me-2';
+                    searchField.placeholder = 'Search artists, songs...';
+                    this.parentNode.insertBefore(searchField, this);
+                    setTimeout(() => searchField.classList.add('expanded'), 10);
+                    searchField.focus();
+                    searchOpen = true;
+                } else {
+                    searchField.classList.remove('expanded');
+                    setTimeout(() => {
+                        searchField.remove();
+                        searchOpen = false;
+                    }, 300);
+                }
+            });
+
+            // Login Button Animation
+            const loginBtn = document.querySelector('.login-btn');
+            loginBtn.addEventListener('mouseover', () => loginBtn.classList.add('pulse'));
+            loginBtn.addEventListener('mouseout', () => loginBtn.classList.remove('pulse'));
+
+
+            // Header animation on scroll
+            const header = document.querySelector('header');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function () {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                lastScrollTop = scrollTop;
+            });
+
+            // Music Player Functionality
+            const playBtn = document.querySelector('.play-btn');
+            const progressBar = document.querySelector('.progress');
+            const playlistItems = document.querySelectorAll('.playlist-item');
+            const songInfo = document.querySelector('.song-info h3');
+            const artistInfo = document.querySelector('.song-info p');
+            const albumCover = document.querySelector('.song-info img');
+            const currentTimeEl = document.querySelector('.time span:first-child');
+            const totalTimeEl = document.querySelector('.time span:last-child');
+
+            let isPlaying = false;
+            let currentSong = 0;
+            let progressInterval;
+            let currentProgress = 0;
+
+            const songs = [
+                { title: "Vuma Dlozi Lami", artist: "Issa Sisdoh ft. Ancestral Rituals", cover: "https://cdn-images.dzcdn.net/images/cover/00155c32bca33d8143154e478fe18390/0x1900-000000-80-0-0.jpg", duration: "6:21", durationSeconds: 381 },
+                { title: "Chobolo", artist: "Baxon ft. Juu Matere", cover: "https://cdn-images.dzcdn.net/images/cover/3b5772461e195a07518bb3c02fbf41e2/1900x1900-000000-80-0-0.jpg", duration: "3:54", durationSeconds: 234 },
+                { title: "Isaku", artist: "Dj Latimmy", cover: "https://mzanzitunes.com/wp-content/uploads/2025/03/Screenshot-2025-03-13-at-20.13.30-578x381.png", duration: "3:53", durationSeconds: 233 },
+                { title: "Tsena Rasta", artist: "Monnamogolo wa Thulaganyo", cover: "https://hdlost.com/images/cover/monnamogolo-wa-thulaganyo/monnamogolo-wa-thulaganyo-yame-le-ditsala.jpg", duration: "5:25", durationSeconds: 325 },
+                { title: "Phika", artist: "Chokoma", cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjmQ008CV5YaSdFeIcL5tHTn1dLAOGZolozQ&s", duration: "4:02", durationSeconds: 242 }
+            ];
+
+            playBtn.addEventListener('click', function () {
+                isPlaying ? pauseSong() : playSong();
+            });
+
+            function playSong() {
+                isPlaying = true;
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                startProgress();
+                animateAlbumCover(true);
+            }
+
+            function pauseSong() {
+                isPlaying = false;
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                clearInterval(progressInterval);
+                animateAlbumCover(false);
+            }
+
+            function animateAlbumCover(play) {
+                albumCover.style.transition = 'transform 0.5s ease';
+                albumCover.style.transform = play ? 'rotate(360deg)' : 'rotate(0deg)';
+            }
+
+            function startProgress() {
+                clearInterval(progressInterval);
+                const duration = songs[currentSong].durationSeconds;
+                const increment = 100 / (duration * 10);
+
+                progressInterval = setInterval(() => {
+                    currentProgress += increment;
+                    if (currentProgress >= 100) {
+                        clearInterval(progressInterval);
+                        nextSong();
+                        return;
+                    }
+                    progressBar.style.width = `${currentProgress}%`;
+                    const currentSeconds = Math.floor((duration * currentProgress) / 100);
+                    currentTimeEl.textContent = formatTime(currentSeconds);
+                }, 100);
+            }
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${minutes}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            function loadSong(index) {
+                currentProgress = 0;
+                progressBar.style.width = '0%';
+                const song = songs[index];
+                songInfo.textContent = song.title;
+                artistInfo.textContent = song.artist;
+                albumCover.src = song.cover;
+                totalTimeEl.textContent = song.duration;
+                currentTimeEl.textContent = '0:00';
+                playlistItems.forEach((item, i) => item.classList.toggle('active', i === index));
+            }
+
+            function nextSong() {
+                currentSong = (currentSong + 1) % songs.length;
+                loadSong(currentSong);
+                if (isPlaying) playSong();
+            }
+
+            function prevSong() {
+                currentSong = (currentSong - 1 + songs.length) % songs.length;
+                loadSong(currentSong);
+                if (isPlaying) playSong();
+            }
+
+            document.querySelector('.controls button:first-child').addEventListener('click', prevSong);
+            document.querySelector('.controls button:last-child').addEventListener('click', nextSong);
+
+            playlistItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentSong = index;
+                    loadSong(currentSong);
+                    playSong();
+                });
+            });
+
+            document.querySelector('.progress-bar').addEventListener('click', function (e) {
+                const clickPercentage = (e.offsetX / this.clientWidth) * 100;
+                currentProgress = clickPercentage;
+                progressBar.style.width = `${clickPercentage}%`;
+                const song = songs[currentSong];
+                currentTimeEl.textContent = formatTime(Math.floor((song.durationSeconds * clickPercentage) / 100));
+                if (isPlaying) {
+                    clearInterval(progressInterval);
+                    startProgress();
+                }
+            });
+
+            loadSong(0);
+
+            // Artist Cards Animation
+            const artistCards = document.querySelectorAll('.artist-card');
+            artistCards.forEach(card => {
+                card.addEventListener('mouseenter', () => card.querySelector('.play-overlay').style.opacity = '1');
+                card.addEventListener('mouseleave', () => card.querySelector('.play-overlay').style.opacity = '0');
+            });
+
+            // Genre Cards Animation
+            const genreCards = document.querySelectorAll('.genre-card');
+            genreCards.forEach(card => {
+                card.addEventListener('mouseenter', () => card.style.transform = 'scale(1.05)');
+                card.addEventListener('mouseleave', () => card.style.transform = 'scale(1)');
+            });
+
+            // Scroll Animations
+            const fadeElements = document.querySelectorAll('.section-header, .artist-card, .genre-card, .event-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // CTA Button Animation
+            const ctaBtn = document.querySelector('.cta-btn');
+            ctaBtn.addEventListener('mouseover', () => ctaBtn.classList.add('pulse'));
+            ctaBtn.addEventListener('mouseout', () => ctaBtn.classList.remove('pulse'));
+
+            // Event Tickets Button
+            const ticketBtns = document.querySelectorAll('.ticket-btn');
+            ticketBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const originalText = this.textContent;
+                    this.textContent = 'Redirecting...';
+                    this.classList.add('loading');
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.remove('loading');
+                    }, 2000);
+                });
+            });
+
+            // Parallax Effect for Hero
+            const hero = document.querySelector('.hero');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.pageYOffset;
+                hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+            });
+
+            // Newsletter Signup in Footer
+            const subscribeForm = document.querySelector('.subscribe-section form');
+            const emailInput = subscribeForm.querySelector('input');
+            const submitBtn = subscribeForm.querySelector('button');
+
+            subscribeForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const originalText = submitBtn.textContent;
+                if (emailInput.validity.valid) {
+                    submitBtn.textContent = 'Thanks!';
+                    submitBtn.classList.add('success');
+                    emailInput.classList.add('success');
+                    setTimeout(() => {
+                        emailInput.value = '';
+                        submitBtn.textContent = originalText;
+                        submitBtn.classList.remove('success');
+                        emailInput.classList.remove('success');
+                    }, 2000);
+                } else {
+                    emailInput.classList.add('error');
+                    setTimeout(() => emailInput.classList.remove('error'), 500);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
